@@ -3,10 +3,13 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import router from "./routes";
+import { mongodb } from "./config/db";
 
 const app = express();
 
 dotenv.config();
+
+mongodb();
 
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
