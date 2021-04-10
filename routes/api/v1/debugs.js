@@ -1,9 +1,9 @@
 import express from "express";
 
+import debugController from "../../../controllers/debugController";
+
 const router = express.Router();
 
-router.get("/create", (req, res, next) => {
-  res.json({ message: "from index api" });
-});
+router.post("/create", debugController.create);
 
 export default router;

@@ -3,7 +3,8 @@ import timestamps from "mongoose-timestamp";
 
 const DebugSchema = new mongoose.Schema({
   type: {
-    type: String,
+    type: Number,
+    default: 0,
   },
   statusCode: {
     type: String,
@@ -11,15 +12,33 @@ const DebugSchema = new mongoose.Schema({
   body: {
     type: String,
   },
-  level: {},
-  page: {},
-  occurredAt: {},
-  deviceName: {},
-  androidId: {},
-  project: {},
+  level: {
+    type: Number,
+    default: 0,
+  },
+  page: {
+    type: String,
+  },
+  occurredAt: {
+    type: Date,
+    default: Date.now,
+  },
+  deviceName: {
+    type: String,
+  },
+  androidId: {
+    type: String,
+  },
+  project: {
+    type: String,
+  },
   userId: {
-      
-  }
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
+  status: {
+    type: Boolean,
+  },
 });
 
 DebugSchema.plugin(timestamps);
