@@ -1,21 +1,33 @@
-import User from "../models/User";
+import Project from "../models/Project";
 
 class UserController {
-  static async create(req) {
+  static async create(req, res) {
     try {
-      let body = req.body.user;
-      const result = await User.findOne().where(body.deviceId);
-      if (!result) {
-        User.create(
-          {
-            name: body.name,
-          },
-          function (err, data) {
-            if (err) return false;
-            return data;
+      let body = req.body;
+      Project.findOne()
+        .where(body.name)
+        .then((project) => {
+          if (!project) {
+            const projectModel = new Project({
+              name: body.name,
+            });
+            return projectModel.save();
           }
-        );
-      } else return result;
+          return project;
+        })
+        .then(() => {
+          return res.status(201).json({
+            data: {
+              status: true,
+              message: "Project registered success.",
+            },
+          });
+        })
+        .catch((err) => {
+          res.status(500).json({
+            error: err,
+          });
+        });
     } catch (exception) {
       return exception;
     }
