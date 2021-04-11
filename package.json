@@ -4,8 +4,8 @@
   "description": "Client Error Log Panel with Nodejs",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon --exec babel-node server.js",
-    "build": "babel server.js --out-file dist/server.js",
+    "dev": "nodemon --exec babel-node server.js",
+    "prod": "babel server.js --out-file dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

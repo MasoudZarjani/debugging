@@ -4,8 +4,9 @@ export default {
       ServerError: 0,
     },
     status: {
-      inactive: 0,
-      active: 1,
+      submitted: 0,
+      todo: 1,
+      done: 2,
     },
   },
 };

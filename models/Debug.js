@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import timestamps from "mongoose-timestamp";
 
+import constants from "../config/constants";
+
 const DebugSchema = new mongoose.Schema({
   type: {
     type: Number,
@@ -23,21 +25,17 @@ const DebugSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  deviceName: {
-    type: String,
-  },
-  androidId: {
-    type: String,
-  },
-  project: {
-    type: String,
-  },
-  userId: {
+  user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
+  project: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Project",
+  },
   status: {
-    type: Boolean,
+    type: Number,
+    default: constants.debug.status.submitted,
   },
 });
 

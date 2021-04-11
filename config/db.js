@@ -4,7 +4,7 @@ dotenv.config();
 
 export const mongodb = () => {
   const connection = process.env.MONGO_DB_CONNECTION || "mongodb";
-  const host = process.env.MONGO_DB_HOST || "project";
+  const host = process.env.MONGO_DB_HOST || "debugger";
   const port = process.env.MONGO_DB_PORT || "27017";
   const name = process.env.MONGO_DB_DATABASE || "localhost";
 
