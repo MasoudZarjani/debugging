@@ -13,40 +13,39 @@ class DebugController {
             .where(userData.deviceId)
             .then((user) => {
               if (!user) {
-                const userModel = new User({
-                  uuid: userData.uuid,
-                  mobile: userData.mobile,
-                  username: userData.username,
-                  deviceId: userData.deviceId,
-                  deviceName: userData.deviceName,
-                });
+                const userModel = new User(userData);
                 return userModel.save();
               }
               return user;
             })
             .then((result) => {
               errorList.forEach((element) => {
-                const debug = new Debug({
-                  type: element.type,
-                  statusCode: element.statusCode,
-                  body: element.body,
-                  level: element.level,
-                  page: element.page,
-                  occurredAt: element.occurredAt,
-                  project: element.project,
-                  user: result,
-                });
+                element.user = result;
+                const debug = new Debug(element);
                 debug.save();
               });
+            })
+            .then(() => {
+              return res.status(200).json({
+                data: {
+                  status: true,
+                },
+              });
+            })
+            .catch((err) => {
+              res.status(500).json({
+                message: err,
+              });
             });
-        return res.status(200).json({
-          data: {
-            status: true,
-          },
-        });
+        else
+          return res.status(500).json({
+            message: "Project not exists",
+          });
       });
     } catch (exception) {
-      res.status(500).send(exception);
+      res.status(500).json({
+        message: exception,
+      });
     }
   }
 }
