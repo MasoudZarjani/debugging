@@ -25,6 +25,12 @@ const DebugSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  versionCode: {
+    type: String,
+  },
+  versionName: {
+    type: String,
+  },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",

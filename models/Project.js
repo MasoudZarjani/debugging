@@ -5,6 +5,9 @@ const ProjectSchema = new mongoose.Schema({
   name: {
     type: String,
   },
+  packageName: {
+    type: String,
+  },
   status: {
     type: Boolean,
     default: true,
