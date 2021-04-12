@@ -26,7 +26,7 @@ class DebugController {
               });
             })
             .then(() => {
-              return res.status(200).json({
+              res.status(200).json({
                 data: {
                   status: true,
                 },
@@ -38,7 +38,7 @@ class DebugController {
               });
             });
         else
-          return res.status(500).json({
+          res.status(500).json({
             message: "Project not exists",
           });
       });
