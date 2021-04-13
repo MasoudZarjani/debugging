@@ -2,6 +2,9 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 
+import "core-js/stable";
+import "regenerator-runtime/runtime";
+
 import router from "./routes";
 import { mongodb } from "./config/db";
 
