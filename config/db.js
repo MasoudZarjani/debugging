@@ -16,6 +16,7 @@ export const mongodb = () => {
       useCreateIndex: true,
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      useFindAndModify: false,
     },
     (err) => {
       if (!err) console.log("MongoDB Connection Succeeded");

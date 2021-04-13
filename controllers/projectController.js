@@ -16,7 +16,7 @@ class UserController {
           return project;
         })
         .then(() => {
-          return res.status(201).json({
+          res.status(201).json({
             data: {
               status: true,
               message: "Project registered success.",
@@ -29,7 +29,33 @@ class UserController {
           });
         });
     } catch (exception) {
-      return exception;
+      res.status(500).json({
+        message: exception,
+      });
+    }
+  }
+
+  static async update(req, res) {
+    try {
+      let body = req.body;
+      Project.findOneAndUpdate({ _id: body.id }, { $set: body }, { new: true })
+        .then(() => {
+          res.status(201).json({
+            data: {
+              status: true,
+              message: "Project update success.",
+            },
+          });
+        })
+        .catch((err) => {
+          res.status(500).json({
+            message: err,
+          });
+        });
+    } catch (exception) {
+      res.status(500).json({
+        message: exception,
+      });
     }
   }
 }
