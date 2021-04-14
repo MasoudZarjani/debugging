@@ -6,8 +6,8 @@ class DebugController {
     try {
       let errorList = req.body.errorList;
       let userData = req.body.user;
-      let projectName = req.body.projectName;
-      Project.countDocuments({ name: projectName }, (err, projectCount) => {
+      let project = req.body.project;
+      Project.countDocuments({ name: project.name }, (err, projectCount) => {
         if (projectCount > 0)
           User.findOne()
             .where(userData.deviceId)
@@ -20,6 +20,8 @@ class DebugController {
             })
             .then((result) => {
               errorList.forEach((element) => {
+                element.versionCode = project.versionCode;
+                element.versionName = project.versionName;
                 element.user = result;
                 const debug = new Debug(element);
                 debug.save();
