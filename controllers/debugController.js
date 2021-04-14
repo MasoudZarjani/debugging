@@ -50,6 +50,27 @@ class DebugController {
       });
     }
   }
+
+  static async list(req, res) {
+    try {
+      Debug.find({})
+        .sort({ createdAt: -1 })
+        .then((result) => {
+          res.status(200).json({
+            data: result,
+          });
+        })
+        .catch((err) => {
+          res.status(500).json({
+            message: err,
+          });
+        });
+    } catch (exception) {
+      res.status(500).json({
+        message: exception,
+      });
+    }
+  }
 }
 
 export default DebugController;
